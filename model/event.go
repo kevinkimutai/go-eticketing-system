@@ -1,10 +1,17 @@
 package model
 
-import "gorm.io/gorm"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Event struct {
 	gorm.Model
-	Venue       string
-	Location    string
-	DateOfEvent string
+	Venue       string     `json:"venue"`
+	Location    string     `json:"location"`
+	DateOfEvent *time.Time `json:"date_of_event"`
+	VendorId    uint
+	UserId      uint
+	Ticket      []Ticket
 }
