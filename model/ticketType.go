@@ -7,4 +7,5 @@ type TicketType struct {
 	Type              string `gorm:"type:ENUM('regular','vvip','vip');default:'regular'"`
 	Quantity          uint   `json:"quantity"`
 	RemainingQuantity uint   `json:"remaining_quantity"`
+	TicketID          uint
 }

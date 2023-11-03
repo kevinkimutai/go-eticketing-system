@@ -4,5 +4,7 @@ import "gorm.io/gorm"
 
 type Transaction struct {
 	gorm.Model
-	Ticket []Ticket
+	UserID  uint
+	User    User
+	Tickets []Ticket
 }

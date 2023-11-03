@@ -4,9 +4,11 @@ import "gorm.io/gorm"
 
 type Ticket struct {
 	gorm.Model
-	UserId        uint
+	UserID        uint
+	User          User
 	Quantity      uint
+	TicketTypeID  uint
 	TicketType    TicketType
-	EventId       uint
-	TransactionId uint
+	EventID       uint
+	TransactionID uint
 }

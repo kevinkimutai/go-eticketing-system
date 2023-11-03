@@ -11,7 +11,6 @@ type Event struct {
 	Venue       string     `json:"venue"`
 	Location    string     `json:"location"`
 	DateOfEvent *time.Time `json:"date_of_event"`
-	VendorId    uint
-	UserId      uint
-	Ticket      []Ticket
+	VendorID    uint
+	Tickets     []Ticket
 }
