@@ -10,7 +10,7 @@ import (
 var DB *gorm.DB
 var err error
 
-const ConnectionStr = "root:P@ssw0rd@tcp(127.0.0.1:3306)/mysqlgo?parseTime=true"
+const ConnectionStr = "root:P@ssw0rd@tcp(127.0.0.1:3306)/e_ticketing?parseTime=true"
 
 func InitMigration() {
 

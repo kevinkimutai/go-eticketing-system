@@ -11,5 +11,5 @@ type User struct {
 	Password     string        `json:"password" gorm:"not null"`
 	Tickets      []Ticket      `gorm:"foreignKey:UserID"`
 	Transactions []Transaction `gorm:"foreignKey:UserID"`
-	Events       []Event       `gorm:"foreignKey:UserID"`
+	Events       []Event       `gorm:"foreignKey:VendorID"`
 }

@@ -222,6 +222,7 @@ func Protected(c *fiber.Ctx) error {
 	}
 
 	c.Locals("userRole", claims["role"])
+	c.Locals("userId", claims["sub"])
 
 	return c.Next()
 

@@ -8,4 +8,5 @@ type TicketType struct {
 	Quantity          uint   `json:"quantity"`
 	RemainingQuantity uint   `json:"remaining_quantity"`
 	TicketID          uint
+	EventID           uint
 }
