@@ -14,6 +14,7 @@ type Event struct {
 	DateOfEvent *time.Time `json:"date_of_event"`
 	Price       uint       `json:"price"`
 	BannerUrl   string     `json:"banner_url"`
+	Description string     `json:"description"`
 	VendorID    uint
 	Tickets     []Ticket
 	TicketType  []TicketType `json:"ticket_type"`

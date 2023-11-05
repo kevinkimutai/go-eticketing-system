@@ -29,6 +29,7 @@ func routers(app *fiber.App) {
 	//Event Routes
 	//Only user who created event can delete/update
 	app.Post("/event", handler.Protected, handler.Restricted("user"), handler.CreateEvent)
+	app.Get("/event", handler.GetAllEvents)
 	app.Get("/event/:eventId", handler.Protected, handler.GetEvent)
 	app.Patch("/event/:eventId", handler.Protected, handler.Restricted("user"), handler.UpdateEvent)
 	app.Delete("/event/:eventId", handler.Protected, handler.Restricted("user"), handler.DeleteEvent)

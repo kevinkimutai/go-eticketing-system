@@ -24,17 +24,6 @@ func CreateEvent(c *fiber.Ctx) error {
 	userId := c.Locals("userId").(float64)
 	convertedUserId := uint(userId)
 
-	// 	db.Create(&Event{
-	//   Name: event.Name,
-	//   Venue:event.Venue,
-	//   Location:event.Location,
-	//   Price:event.Price,
-	//   BannerUrl:event.BannerUrl,
-	//   VendorId:userId,
-
-	//   TicketType: []TicketType{event.TicketType}
-	// })
-
 	newEvent := &model.Event{
 		Name:      event.Name,
 		Venue:     event.Venue,
@@ -55,6 +44,35 @@ func CreateEvent(c *fiber.Ctx) error {
 	}
 	return c.Status(fiber.StatusCreated).JSON(newEvent)
 
+}
+
+func GetAllEvents(c *fiber.Ctx) error {
+	req := c.Queries()
+	//TODO ADD MORE QUERIES FOR DASHBOARD.
+	var events []model.Event
+
+	query := db.DB
+
+	if req["dateOfEvent"] != "" {
+		query = query.Where("date_of_event = ?", req["dateOfEvent"])
+	}
+	if req["search"] != "" {
+		query = query.Where("name LIKE ? OR description LIKE ?", "%"+req["search"]+"%", "%"+req["search"]+"%")
+	}
+	if req["location"] != "" {
+		query = query.Where("location = ?", req["location"])
+	}
+
+	//TODO QUERY ONLY FUTURE DATES
+	//TODO QUERY NEAREST EVENTS
+
+	if err := query.Find(&events).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Internal Server Error",
+			"error":   err.Error(),
+		})
+	}
+	return c.Status(fiber.StatusOK).JSON(events)
 }
 
 func GetEvent(c *fiber.Ctx) error {
